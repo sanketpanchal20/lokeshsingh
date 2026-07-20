@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trial Feedback for Lokesh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F6F2;
+    --panel:#FFFFFF;
+    --border:#E4E2DB;
+    --text:#26251F;
+    --muted:#83807A;
+    --amber:#C97B3D;
+    --amber-soft:#F1DEC9;
+    --teal:#3F7D6E;
+    --teal-soft:#D9EAE4;
+    --red:#B65450;
+    --track:#EFEDE7;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15.5px;line-height:1.65;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px;}
+  h1{font-size:30px;font-weight:800;margin:0 0 8px;letter-spacing:-0.01px;}
+  h2{font-size:20px;font-weight:700;margin:0 0 6px;}
+  h3{font-size:13px;font-weight:700;margin:0 0 12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;}
+  p{margin:0 0 12px;}
+  .header{padding:52px 0 30px;}
+  .header .meta{color:var(--muted);font-size:14px;max-width:600px;}
+  .section-head{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+  .section-badge{width:30px;height:30px;border-radius:50%;background:var(--text);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;flex-shrink:0;}
+  .section-badge.secondary{background:var(--muted);}
+  section{padding:44px 0;border-top:1px solid var(--border);}
+  section.primary h2{font-size:24px;}
+  section.secondary h2{font-size:19px;}
+  .lede{color:var(--muted);font-size:14.5px;margin-bottom:22px;}
+
+  /* stat cards */
+  .stat-row{display:flex;gap:14px;margin:18px 0 8px;flex-wrap:wrap;}
+  .stat{flex:1;min-width:130px;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:16px 18px;}
+  .stat .n{font-size:28px;font-weight:800;font-family:'IBM Plex Mono',monospace;color:var(--text);}
+  .stat .l{font-size:12px;color:var(--muted);margin-top:4px;}
+
+  /* grouped bar chart for draft counts */
+  .chart-block{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:22px 24px;margin:16px 0;}
+  .chart-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+  .chart-sub{font-size:12.5px;color:var(--muted);margin-bottom:18px;}
+  .bars{display:flex;align-items:flex-end;gap:18px;height:150px;padding:0 4px;}
+  .bargroup{display:flex;flex-direction:column;align-items:center;flex:1;height:100%;justify-content:flex-end;}
+  .bar{width:100%;max-width:52px;border-radius:3px 3px 0 0;position:relative;}
+  .bar .val{position:absolute;top:-20px;left:0;right:0;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text);font-weight:600;}
+  .bar.eb{background:var(--amber);}
+  .bar.seq{background:var(--teal);}
+  .bar-label{margin-top:10px;font-size:11.5px;color:var(--muted);text-align:center;font-family:'IBM Plex Mono',monospace;}
+  .chart-legend{display:flex;gap:18px;margin-top:16px;font-size:12.5px;color:var(--muted);}
+  .chart-legend span{display:inline-flex;align-items:center;gap:6px;}
+  .sw{width:10px;height:10px;border-radius:2px;display:inline-block;}
+
+  /* category bar list */
+  .barlist{display:flex;flex-direction:column;gap:13px;margin:14px 0 6px;}
+  .bar-row{display:grid;grid-template-columns:150px 1fr 88px;align-items:center;gap:12px;font-size:13.5px;}
+  .bar-track{height:16px;background:var(--track);border-radius:3px;overflow:hidden;display:flex;}
+  .bar-seg{height:100%;}
+  .bar-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);text-align:right;}
+
+  .box{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:18px 20px;margin:14px 0;}
+  .box.note{font-size:14px;color:#4a4844;}
+  .box.note strong{color:var(--text);}
+  .box.conclusion{background:var(--amber-soft);border:1px solid #E0BF98;font-size:14px;color:#4a3d2e;}
+  .box.conclusion strong{color:var(--text);}
+
+  /* persistent issue chain */
+  .chain{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:14px 0;background:var(--panel);}
+  .chain-item{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:13px 18px;font-size:13.5px;border-bottom:1px solid var(--border);align-items:baseline;}
+  .chain-item:last-child{border-bottom:none;}
+  .chain-item .tc{font-family:'IBM Plex Mono',monospace;color:var(--amber);font-weight:600;font-size:12px;}
+  .chain-item.final{background:var(--amber-soft);}
+
+  .quote{border-left:3px solid var(--teal);background:var(--teal-soft);padding:12px 16px;margin:10px 0;font-size:14px;color:#2f4f47;border-radius:0 4px 4px 0;}
+  .quote .who{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal);margin-bottom:4px;font-weight:600;}
+
+  ul{margin:6px 0 6px;padding-left:20px;}
+  li{margin-bottom:5px;}
+
+  footer{padding:30px 0 50px;color:var(--muted);font-size:12px;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="wrap header">
+  <h1>Trial Feedback</h1>
+  <div class="meta">Two videos: Exiting Business (Daniel Priestley) and the Sequoia System VSL (James Conole). Based on every Frame.io comment across both, plus how notes got handled in Slack.</div>
+  <div class="stat-row">
+    <div class="stat"><div class="n">235</div><div class="l">Frame.io comments reviewed</div></div>
+    <div class="stat"><div class="n">7</div><div class="l">drafts across both videos</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">projects completed</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <h2>Overview</h2>
+  <p>You're good at this. The design and structuring instincts are genuinely strong, better than most editors at this stage of a trial. This document walks through what the Frame.io comments show across both videos, plus a note on communication, so you know exactly what's working and what to tighten up.</p>
+</section>
+
+<section class="primary">
+  <div class="section-head"><div class="section-badge">1</div><h2>Video Editing</h2></div>
+  <p class="lede">Comment counts and categories are pulled directly from the Frame.io exports for both projects. This is the main focus of this review.</p>
+
+  <h3>Comments per draft</h3>
+  <div class="chart-block">
+    <div class="chart-title">How many notes each draft got</div>
+    <div class="chart-sub">Exiting Business took four drafts to close out. Sequoia closed in three.</div>
+    <div class="bars">
+      <div class="bargroup"><div class="bar eb" style="height:100%"><span class="val">79</span></div><div class="bar-label">EB V1</div></div>
+      <div class="bargroup"><div class="bar eb" style="height:100%"><span class="val">79</span></div><div class="bar-label">EB V3</div></div>
+      <div class="bargroup"><div class="bar eb" style="height:28%"><span class="val">22</span></div><div class="bar-label">EB V4</div></div>
+      <div class="bargroup"><div class="bar eb" style="height:5%"><span class="val">4</span></div><div class="bar-label">EB V5</div></div>
+      <div class="bargroup"><div class="bar seq" style="height:47%"><span class="val">37</span></div><div class="bar-label">Seq V2</div></div>
+      <div class="bargroup"><div class="bar seq" style="height:22%"><span class="val">17</span></div><div class="bar-label">Seq V3</div></div>
+      <div class="bargroup"><div class="bar seq" style="height:2%"><span class="val">1</span></div><div class="bar-label">Seq V4</div></div>
+    </div>
+    <div class="chart-legend"><span><span class="sw" style="background:var(--amber)"></span>Exiting Business</span><span><span class="sw" style="background:var(--teal)"></span>Sequoia VSL</span></div>
+  </div>
+
+
+  <h3>Where the notes landed, by category</h3>
+  <div class="barlist">
+    <div class="bar-row"><div>Text / grammar / case</div><div class="bar-track"><div class="bar-seg" style="width:78%;background:var(--amber)"></div><div class="bar-seg" style="width:5%;background:var(--teal)"></div></div><div class="bar-num">43 → 3</div></div>
+    <div class="bar-row"><div>Color / style</div><div class="bar-track"><div class="bar-seg" style="width:65%;background:var(--amber)"></div><div class="bar-seg" style="width:26%;background:var(--teal)"></div></div><div class="bar-num">36 → 14</div></div>
+    <div class="bar-row"><div>Cuts / zoom</div><div class="bar-track"><div class="bar-seg" style="width:40%;background:var(--amber)"></div><div class="bar-seg" style="width:9%;background:var(--teal)"></div></div><div class="bar-num">22 → 5</div></div>
+    <div class="bar-row"><div>Spacing / alignment</div><div class="bar-track"><div class="bar-seg" style="width:36%;background:var(--amber)"></div><div class="bar-seg" style="width:27%;background:var(--teal)"></div></div><div class="bar-num">20 → 15</div></div>
+    <div class="bar-row"><div>Structure</div><div class="bar-track"><div class="bar-seg" style="width:25%;background:var(--amber)"></div><div class="bar-seg" style="width:9%;background:var(--teal)"></div></div><div class="bar-num">14 → 5</div></div>
+    <div class="bar-row"><div>Audio / SFX</div><div class="bar-track"><div class="bar-seg" style="width:20%;background:var(--amber)"></div><div class="bar-seg" style="width:15%;background:var(--teal)"></div></div><div class="bar-num">11 → 8</div></div>
+    <div class="bar-row"><div>Frame glitches</div><div class="bar-track"><div class="bar-seg" style="width:11%;background:var(--amber)"></div><div class="bar-seg" style="width:4%;background:var(--teal)"></div></div><div class="bar-num">6 → 2</div></div>
+  </div>
+  <div class="chart-legend"><span><span class="sw" style="background:var(--amber)"></span>Exiting Business total</span><span><span class="sw" style="background:var(--teal)"></span>Sequoia VSL total</span></div>
+  <p style="margin-top:16px;">Text/grammar and color notes dropped the most between the two projects, and that's real improvement. Spacing/alignment and audio/SFX held roughly steady in proportion, so those two are worth double checking before the next upload.</p>
+
+  <div class="box conclusion">
+    <h3 style="color:var(--text);margin-bottom:10px;">Bottom line on comment types</h3>
+    <p style="margin-bottom:10px;">Ranked by total volume across both projects: <strong>color/style (50)</strong> and <strong>text/grammar (46)</strong> are the two largest categories by far, followed by <strong>spacing/alignment (35)</strong> and <strong>cuts/zoom (27)</strong>. Structure and audio/SFX are smaller and roughly tied (19 each). Frame glitches are the smallest by volume (8), but a frame glitch reaching review at all is unprofessional. A self review pass before uploading is how you catch these yourself instead of a client or a reviewer catching them for you.</p>
+    <p style="margin:0;">So the highest leverage fix is the same one twice: a self review pass before uploading would catch most of the color and text notes, since those are the categories that repeat rather than the ones that need new skill.</p>
+  </div>
+
+  <h3>A note that took three drafts to land</h3>
+  <p>This is the clearest single example of a small thing slipping through more than once.</p>
+  <div class="chain">
+    <div class="chain-item"><span class="tc">V1</span><span>"Daniel's frame looks very pale, can you check what's wrong here?"</span></div>
+    <div class="chain-item"><span class="tc">V3</span><span>"Daniel is still pale here... needs to be fixed throughout the video"</span></div>
+    <div class="chain-item final"><span class="tc">V5</span><span>"[Annotation] color not fixed"</span></div>
+  </div>
+  <p>Same root issue, flagged three separate times. When a note says "fix this throughout," it's worth checking every instance in the timeline before reuploading, not just the one that got pointed out.</p>
+
+  <h3>Consistency across the runtime</h3>
+  <p>One general pattern worth naming: effort visibly drops in the second half of a video, sometimes the last third. It's fine to simplify once a deadline is close, fewer animations, lighter graphics. But whatever ships in that back half still needs to hit the same bar as the front half. Fewer, good animations is the goal. Fewer, rushed ones isn't.</p>
+</section>
+
+<section class="secondary">
+  <div class="section-head"><div class="section-badge secondary">2</div><h2>Accountability</h2></div>
+  <p class="lede">This matters as much as the editing, maybe more. It's about how you work with the rest of the team.</p>
+
+  <div class="stat-row">
+    <div class="stat"><div class="n">41%</div><div class="l">of your Slack messages contained a question</div></div>
+    <div class="stat"><div class="n">8+</div><div class="l">times you flagged yourself as asking too much</div></div>
+  </div>
+
+  <p>A large share of those questions were reasonable. Some were avoidable, the kind with an obvious answer that just cost time on both sides while you waited for a reply. A few examples:</p>
+  <div class="box note">"so, should I send a video with all the changes done except the AI Brolls or should I send it on Monday including the AI Brolls?"</div>
+  <div class="box note">"there bro? Should I go with my understanding or should I upload it as it is on the frame to be reviewed by you?"</div>
+  <div class="box note">"can I add 2 liners in the first 30 seconds?"</div>
+  <p>Each of these was a call you had enough context to make yourself. Note the reasoning, make the decision, and get it reviewed after, not before.</p>
+
+  <p>The standard we're asking for: identify the problem, make a decision, act on it, then get it reviewed. If the decision was wrong, you'll get a note and fix it, that's normal. What we want to avoid is waiting for someone else to spot the problem before anything happens on your end.</p>
+
+  <p>On the flip side, the ownership moments were real, and worth continuing: owning mistakes directly when they happened, pushing back with reasoning when a note didn't apply, explaining that a cut you couldn't fully fix was baked into the source footage, and adjusting your workflow once something was explained rather than just going along with it without understanding why.</p>
+</section>
+
+<section class="secondary">
+  <div class="section-head"><div class="section-badge secondary">3</div><h2>Final Words</h2></div>
+  <p>Overall, you're doing good. The editing and design instincts are strong, and the improvement between the two projects, especially on language, is real and worth being proud of. The main thing to carry into the next project is tightening up attention to detail so notes don't repeat across drafts, and shifting communication toward making a call yourself, then getting it reviewed, instead of asking first. Keep the momentum, keep the ownership when things go wrong, and focus on communication style going forward.</p>
+</section>
+
+</div>
+
+<footer><div class="wrap">Based on Frame.io comment exports across seven draft reviews, and Slack DM history from the trial period.</div></footer>
+
+</body>
+</html>
